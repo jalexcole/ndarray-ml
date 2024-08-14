@@ -1,0 +1,10 @@
+
+tasks:
+  - init: cargo build
+    command: cargo watch -x run
+
+  - init: yes | sdk install java 22-open
+    command: rustup update
+
+
+

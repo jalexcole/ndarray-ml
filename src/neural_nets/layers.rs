@@ -1,9 +1,19 @@
+use std::default;
+
 pub struct LayerData;
 pub struct LayerBase;
 
 pub trait Layer {
-     
+
+    /// Unfreeze the layer parameters so they can be updated.
+    fn freeze(&self);
+    /// Erase all the layer's derived variables and gradients.
+    fn flush_gradients(&self);
+
+    fn set_params(&self, summary_dict: LayerParameters);
 }
+
+struct LayerParameters;
 
 pub struct DotProductAttention;
 
@@ -58,6 +68,30 @@ pub struct LSTMCell;
 ///             within the :meth:`update` method.  If None, use the :class:`SGD
 ///             <numpy_ml.neural_nets.optimizers.SGD>` optimizer with default
 ///             parameters. Default is None.
-pub struct RNN;
+pub struct RNN {
+    n_out: usize,
+    n_timesteps: Option<usize>,
+    is_initialized: bool
+}
+
+impl RNN {
+    fn new(n_out: usize) -> Self {
+        Self { n_out: n_out, n_timesteps: None, is_initialized: false }
+    }
+}
+
+impl Layer for RNN {
+    fn freeze(&self) {
+        todo!()
+    }
+
+    fn flush_gradients(&self) {
+        todo!()
+    }
+
+    fn set_params(&self, summary_dict: LayerParameters) {
+        todo!()
+    }
+}
 
 pub struct LSTM;
