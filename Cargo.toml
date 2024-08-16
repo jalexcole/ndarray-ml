@@ -4,4 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+horrible-katex-hack = "0.1.3"
 ndarray = "0.16.0"
+
+[feaures]
+default = []
+plot = []
+serde = ["ndarray/serde"]
+blas = ["ndarray/blas"]
+matrixmultiply-threading = ["ndarray/matrixmultiply-threading"]
+test = []

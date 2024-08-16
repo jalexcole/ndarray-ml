@@ -1,4 +1,6 @@
-use std::default;
+use std::{default, ops::Index};
+
+use ndarray::Array2;
 
 pub struct LayerData;
 pub struct LayerBase;
@@ -33,7 +35,26 @@ pub struct LayerNorm2D;
 
 pub struct Embedding;
 
-pub struct FullyConnected;
+pub struct FullyConnected {
+    is_initialized: bool,
+    n_in: Array2<f64>
+}
+
+impl FullyConnected {
+
+
+    pub fn forward(&mut self, X : Array2<f64>, retain_derive: bool) -> Array2<f64>{
+        if (!self.is_initialized) {
+            // self.n_in = X.shape().index(1)
+        }
+
+        todo!()
+    }
+
+    fn _fwd(&self, X: Array2<f64>) {
+
+    }
+}
 
 pub struct Softmax;
 
