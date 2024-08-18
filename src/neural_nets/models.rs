@@ -19,7 +19,6 @@ pub struct BernoulliVAEBuilder {
     init: String,
 }
 
-
 impl BernoulliVAEBuilder {
     fn new() -> Self {
         Self {
@@ -35,14 +34,13 @@ impl BernoulliVAEBuilder {
             enc_pool2_stride: 1,
             enc_conv1_kernel_shape: [5, 5],
             enc_pool1_kernel_shape: [2, 2],
-            enc_conv2_kernel_shape: [5,5],
+            enc_conv2_kernel_shape: [5, 5],
 
-            enc_pool2_kernel_shape: (2,2),
+            enc_pool2_kernel_shape: (2, 2),
             optimizer: "RMSProp(lr=0.0001)".to_owned(),
             init: "glorot_uniform".to_owned(),
         }
     }
-
 
     fn build(&self) -> BernoulliVAE {
         todo!()
@@ -53,7 +51,4 @@ pub struct Word2Vec;
 
 pub struct WGAN_GP;
 
-
-pub trait Model {
-    
-}
+pub trait Model {}

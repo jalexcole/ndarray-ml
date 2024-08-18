@@ -6,7 +6,6 @@ pub struct LayerData;
 pub struct LayerBase;
 
 pub trait Layer {
-
     /// Unfreeze the layer parameters so they can be updated.
     fn freeze(&self);
     /// Erase all the layer's derived variables and gradients.
@@ -18,6 +17,8 @@ pub trait Layer {
 struct LayerParameters;
 
 pub struct DotProductAttention;
+
+
 
 pub struct RBM;
 
@@ -37,13 +38,11 @@ pub struct Embedding;
 
 pub struct FullyConnected {
     is_initialized: bool,
-    n_in: Array2<f64>
+    n_in: Array2<f64>,
 }
 
 impl FullyConnected {
-
-
-    pub fn forward(&mut self, X : Array2<f64>, retain_derive: bool) -> Array2<f64>{
+    pub fn forward(&mut self, X: Array2<f64>, retain_derive: bool) -> Array2<f64> {
         if (!self.is_initialized) {
             // self.n_in = X.shape().index(1)
         }
@@ -51,9 +50,7 @@ impl FullyConnected {
         todo!()
     }
 
-    fn _fwd(&self, X: Array2<f64>) {
-
-    }
+    fn _fwd(&self, X: Array2<f64>) {}
 }
 
 pub struct Softmax;
@@ -74,7 +71,7 @@ pub struct LSTMCell;
 
 ///  A single vanilla (Elman)-RNN layer.
 ///
-///         Parameters
+///         # Parameters
 ///         ----------
 ///         n_out : int
 ///             The dimension of a single hidden state / output on a given
@@ -92,12 +89,16 @@ pub struct LSTMCell;
 pub struct RNN {
     n_out: usize,
     n_timesteps: Option<usize>,
-    is_initialized: bool
+    is_initialized: bool,
 }
 
 impl RNN {
     fn new(n_out: usize) -> Self {
-        Self { n_out: n_out, n_timesteps: None, is_initialized: false }
+        Self {
+            n_out: n_out,
+            n_timesteps: None,
+            is_initialized: false,
+        }
     }
 }
 

@@ -6,8 +6,10 @@ edition = "2021"
 [dependencies]
 horrible-katex-hack = "0.1.3"
 ndarray = "0.16.0"
+ndarray-rand = "0.15.0"
+rand = "0.8.5"
 
-[feaures]
+[features]
 default = []
 plot = []
 serde = ["ndarray/serde"]

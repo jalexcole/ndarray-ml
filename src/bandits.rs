@@ -1,7 +1,5 @@
 use core::fmt::{Debug, Display};
 
-
-
 pub trait Bandit: Display + Debug {
     type Step;
     type NArms;
@@ -16,17 +14,11 @@ pub trait Bandit: Display + Debug {
     fn __pull(&self);
 }
 
-pub struct MultinomialBandit {
+pub struct MultinomialBandit {}
 
-}
+impl MultinomialBandit {}
 
-impl MultinomialBandit {
-
-}
-
-pub struct BernoulliBandit {
-
-}
+pub struct BernoulliBandit {}
 
 pub struct GaussianBandit {}
 

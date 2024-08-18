@@ -1,4 +1,5 @@
 use ndarray::{ArrayBase, ArrayD, IxDyn};
+use core::f64;
 use std::fmt::{self, Debug, Formatter};
 /// Trait representing the base functionality of an activation function.
 /// This is equivalent to the `ActivationBase` class in Python.
@@ -17,9 +18,12 @@ pub trait ActivationBase: Debug {
     fn fn_impl(&self, z: &ArrayD<f64>) -> ArrayD<f64>;
 
     /// Compute the gradient of the activation function with respect to the input.
-    fn grad(&self, x: &ArrayD<f64>, kwargs: Option<&std::collections::HashMap<String, f64>>) -> ArrayD<f64>;
+    fn grad(
+        &self,
+        x: &ArrayD<f64>,
+        kwargs: Option<&std::collections::HashMap<String, f64>>,
+    ) -> ArrayD<f64>;
 }
-
 
 pub trait Activation {
     fn function(&self, z: ndarray::ArrayD<f64>) -> f64;
@@ -27,14 +31,15 @@ pub trait Activation {
     fn grad(&self, x: ArrayD<f64>);
 }
 
-#[derive(Default)]
+#[derive(Default, Debug, Copy, Clone)]
 pub struct Sigmoid;
 
 impl Activation for Sigmoid {
     fn function(&self, z: ndarray::ArrayD<f64>) -> f64 {
         todo!();
 
-        let result = 1.0 / (1.0 + z.exp());
+        let result = 1.0 / (1.0 + (-z).exp());
+        
     }
 
     fn grad(&self, x: ArrayD<f64>) {
@@ -68,10 +73,14 @@ pub struct ReLU;
 
 impl ActivationBase for ReLU {
     fn fn_impl(&self, z: &ArrayD<f64>) -> ArrayD<f64> {
-        todo!()
+       z.clamp(0.0, f64::INFINITY)
     }
 
-    fn grad(&self, x: &ArrayD<f64>, kwargs: Option<&std::collections::HashMap<String, f64>>) -> ArrayD<f64> {
+    fn grad(
+        &self,
+        x: &ArrayD<f64>,
+        kwargs: Option<&std::collections::HashMap<String, f64>>,
+    ) -> ArrayD<f64> {
         todo!()
     }
 }
@@ -87,14 +96,15 @@ pub struct Tanh;
 
 #[derive(Default, Debug)]
 pub struct Affine {
-    slope: f64, intercept: f64
+    slope: f64,
+    intercept: f64,
 }
 
 impl Affine {
-        /// Create a new Affine activation function with the specified slope and intercept.
-        pub fn new(slope: f64, intercept: f64) -> Self {
-            Affine { slope, intercept }
-        }
+    /// Create a new Affine activation function with the specified slope and intercept.
+    pub fn new(slope: f64, intercept: f64) -> Self {
+        Affine { slope, intercept }
+    }
 }
 
 impl ActivationBase for Affine {
@@ -102,8 +112,6 @@ impl ActivationBase for Affine {
         z.mapv(|x| self.slope * x + self.intercept)
     }
 
-
-    
     fn call(&self, z: &ArrayD<f64>) -> ArrayD<f64> {
         let reshaped_z: ArrayD<f64> = if z.ndim() == 1 {
             z.clone().into_shape(IxDyn(&[1, z.len()])).unwrap()
@@ -112,15 +120,23 @@ impl ActivationBase for Affine {
         };
         self.fn_impl(&z)
     }
-    
-    fn grad(&self, x: &ArrayD<f64>, kwargs: Option<&std::collections::HashMap<String, f64>>) -> ArrayD<f64> {
+
+    fn grad(
+        &self,
+        x: &ArrayD<f64>,
+        kwargs: Option<&std::collections::HashMap<String, f64>>,
+    ) -> ArrayD<f64> {
         todo!()
     }
 }
 
 impl std::fmt::Display for Affine {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        write!(f, "Affine(slope={}, intercept={})", self.slope, self.intercept)
+        write!(
+            f,
+            "Affine(slope={}, intercept={})",
+            self.slope, self.intercept
+        )
     }
 }
 
@@ -132,7 +148,11 @@ impl ActivationBase for Identity {
         todo!()
     }
 
-    fn grad(&self, x: &ArrayD<f64>, kwargs: Option<&std::collections::HashMap<String, f64>>) -> ArrayD<f64> {
+    fn grad(
+        &self,
+        x: &ArrayD<f64>,
+        kwargs: Option<&std::collections::HashMap<String, f64>>,
+    ) -> ArrayD<f64> {
         todo!()
     }
 }

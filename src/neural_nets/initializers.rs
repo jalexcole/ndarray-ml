@@ -1,8 +1,7 @@
 use super::activations::{ActivationBase, Identity, ReLU};
 
-
 #[derive(Debug)]
-pub struct ActivationInitializer{
+pub struct ActivationInitializer {
     param: Option<String>,
 }
 
@@ -29,9 +28,7 @@ impl ActivationInitializer {
     /// Initialize activation function from the `param` string.
     fn init_from_str(&self, act_str: &str) -> Result<Box<dyn ActivationBase>, String> {
         match act_str.to_lowercase().as_str() {
-            "relu" => {
-                Ok(Box::new(ReLU))
-            },
+            "relu" => Ok(Box::new(ReLU)),
             "identity" => Ok(Box::new(Identity)),
             // Additional cases for other activation functions...
             _ => Err(format!("Unknown activation: {}", act_str)),
@@ -55,5 +52,25 @@ enum Activation {
     HardSigmoid,
     SoftPlus,
     Exponential,
-    ADDINE, LEAKY_RELU, GELU, ELU
+    ADDINE,
+    LEAKY_RELU,
+    GELU,
+    ELU,
 }
+
+enum Mode {
+    he_normal,
+    he_uniform,
+    glorot_normal,
+    glorot_uniform,
+    std_normal,
+    trunc_normal,
+}
+
+impl Default for Mode {
+    fn default() -> Self {
+        Mode::glorot_uniform
+    }
+}
+
+struct InitializerParamaters {}

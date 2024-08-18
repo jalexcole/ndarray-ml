@@ -1,7 +1,4 @@
-
-pub trait Scheduler {
-
-}
+pub trait Scheduler {}
 
 pub struct ConstantScheduler;
 

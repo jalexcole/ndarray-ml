@@ -1,8 +1,6 @@
 use std::fmt::Display;
 
-
-
-
+pub mod kernels;
 
 struct PQNode {}
 
@@ -14,11 +12,7 @@ struct BallTree;
 
 struct DiscreteSampler;
 
-
-
-trait KernelBase: Display{
-
-}
+trait KernelBase: Display {}
 
 struct LinearKernel;
 
@@ -28,3 +22,8 @@ struct RBFKernel;
 
 struct KernelInitializer;
 
+
+pub enum Either<L, R> {
+    Left(L),
+    Right(R),
+} 
