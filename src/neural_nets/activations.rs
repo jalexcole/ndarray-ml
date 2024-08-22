@@ -1,3 +1,4 @@
+use bon::builder;
 use ndarray::{ArrayBase, ArrayD, IxDyn};
 use core::f64;
 use std::fmt::{self, Debug, Formatter};
@@ -7,7 +8,7 @@ pub trait ActivationBase: Debug {
     /// Apply the activation function to an input.
     fn call(&self, z: &ArrayD<f64>) -> ArrayD<f64> {
         let reshaped_z: ArrayD<f64> = if z.ndim() == 1 {
-            z.clone().into_shape(IxDyn(&[1, z.len()])).unwrap()
+            z.clone().into_shape_with_order(IxDyn(&[1, z.len()])).unwrap()
         } else {
             z.clone()
         };

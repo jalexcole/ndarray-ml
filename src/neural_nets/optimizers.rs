@@ -5,6 +5,13 @@ use std::{
 
 use ndarray::Array2;
 
+pub enum Optimizers {
+    SGD(SGD),
+    AdaGrad(AdaGrad),
+    RMSProp(RMSProp),
+    Adam(Adam),
+}
+
 pub trait Optimizer: Display + Copy + Debug {
     fn step(&mut self);
 

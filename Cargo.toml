@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+bon = "1.2.1"
 horrible-katex-hack = "0.1.3"
 ndarray = "0.16.0"
 ndarray-rand = "0.15.0"
