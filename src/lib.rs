@@ -5,6 +5,7 @@ mod hmm;
 mod lda;
 mod linear_models;
 mod neural_nets;
+mod ngram;
 mod nonparametric;
 mod rl_models;
 pub mod util;

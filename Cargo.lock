@@ -3,6 +3,15 @@
 version = 3
 
 [[package]]
+name = "approx"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f2a05fd1bd10b2527e20a2cd32d8873d115b8b39fe219ee25f42a8aca6ba278"
+dependencies = [
+ "num-traits",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -27,7 +36,7 @@ dependencies = [
  "ident_case",
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.74",
 ]
 
 [[package]]
@@ -35,6 +44,18 @@ name = "byteorder"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
+
+[[package]]
+name = "cauchy"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9ff11ddd2af3b5e80dd0297fee6e56ac038d9bdc549573cdb51bd6d2efe7f05e"
+dependencies = [
+ "num-complex",
+ "num-traits",
+ "rand",
+ "serde",
+]
 
 [[package]]
 name = "cblas-sys"
@@ -87,7 +108,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "strsim",
- "syn",
+ "syn 2.0.74",
 ]
 
 [[package]]
@@ -98,7 +119,7 @@ checksum = "d336a2a514f6ccccaa3e09b02d41d35330c07ddf03a62165fcec10bb561c7806"
 dependencies = [
  "darling_core",
  "quote",
- "syn",
+ "syn 2.0.74",
 ]
 
 [[package]]
@@ -137,6 +158,39 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
 
 [[package]]
+name = "katexit"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eb1304c448ce2c207c2298a34bc476ce7ae47f63c23fa2b498583b26be9bc88c"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "lapack-sys"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "447f56c85fb410a7a3d36701b2153c1018b1d2b908c5fbaf01c1b04fac33bcbe"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "lax"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1f96a229d9557112e574164f8024ce703625ad9f88a90964c1780809358e53da"
+dependencies = [
+ "cauchy",
+ "katexit",
+ "lapack-sys",
+ "num-traits",
+ "thiserror",
+]
+
+[[package]]
 name = "libc"
 version = "0.2.156"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -163,6 +217,22 @@ dependencies = [
 
 [[package]]
 name = "ndarray"
+version = "0.15.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "adb12d4e967ec485a5f71c6311fe28158e9d6f4bc4a447b474184d0f91a8fa32"
+dependencies = [
+ "approx",
+ "cblas-sys",
+ "libc",
+ "matrixmultiply",
+ "num-complex",
+ "num-integer",
+ "num-traits",
+ "rawpointer",
+]
+
+[[package]]
+name = "ndarray"
 version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "087ee1ca8a7c22830c2bba4a96ed8e72ce0968ae944349324d52522f66aa3944"
@@ -180,12 +250,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "ndarray-linalg"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b0e8dda0c941b64a85c5deb2b3e0144aca87aced64678adfc23eacea6d2cc42"
+dependencies = [
+ "cauchy",
+ "katexit",
+ "lax",
+ "ndarray 0.15.6",
+ "num-complex",
+ "num-traits",
+ "rand",
+ "thiserror",
+]
+
+[[package]]
 name = "ndarray-ml"
 version = "0.1.0"
 dependencies = [
  "bon",
  "horrible-katex-hack",
- "ndarray",
+ "ndarray 0.16.0",
+ "ndarray-linalg",
  "ndarray-rand",
  "rand",
 ]
@@ -196,7 +283,7 @@ version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f093b3db6fd194718dcdeea6bd8c829417deae904e3fcc7732dabcd4416d25d8"
 dependencies = [
- "ndarray",
+ "ndarray 0.16.0",
  "rand",
  "rand_distr",
 ]
@@ -208,6 +295,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "73f88a1307638156682bada9d7604135552957b7818057dcef22705b4d509495"
 dependencies = [
  "num-traits",
+ "rand",
+ "serde",
 ]
 
 [[package]]
@@ -350,7 +439,7 @@ checksum = "fabfb6138d2383ea8208cf98ccf69cdfb1aff4088460681d84189aa259762f97"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.74",
 ]
 
 [[package]]
@@ -361,6 +450,17 @@ checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
 name = "syn"
+version = "1.0.109"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b64191b275b66ffe2469e8af2c1cfe3bafa67b529ead792a6d0160888b4237"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-ident",
+]
+
+[[package]]
+name = "syn"
 version = "2.0.74"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1fceb41e3d546d0bd83421d3409b1460cc7444cd389341a4c880fe7a042cb3d7"
@@ -368,6 +468,26 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "thiserror"
+version = "1.0.63"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0342370b38b6a11b6cc11d6a805569958d54cfa061a29969c3b5ce2ea405724"
+dependencies = [
+ "thiserror-impl",
+]
+
+[[package]]
+name = "thiserror-impl"
+version = "1.0.63"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4558b58466b9ad7ca0f102865eccc95938dca1a74a856f2b57b6629050da261"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.74",
 ]
 
 [[package]]
@@ -409,5 +529,5 @@ checksum = "fa4f8080344d4671fb4e831a13ad1e68092748387dfc4f55e356242fae12ce3e"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 2.0.74",
 ]

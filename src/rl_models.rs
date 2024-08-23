@@ -1,55 +1,29 @@
+pub trait AgentBase {}
 
+pub struct CrossEntropyAgent {}
 
-pub trait AgentBase {
+impl CrossEntropyAgent {}
 
-}
+impl AgentBase for CrossEntropyAgent {}
 
-pub struct CrossEntropyAgent {
+pub struct MonteCarloAgent {}
 
-}
+impl MonteCarloAgent {}
 
-impl CrossEntropyAgent {
+impl AgentBase for MonteCarloAgent {}
 
-}
-
-impl AgentBase for CrossEntropyAgent {
-
-}
-
-
-
-pub struct MonteCarloAgent {
-
-}
-
-impl MonteCarloAgent {
-
-}
-
-impl AgentBase for MonteCarloAgent{
-
-}
-
-pub struct TemporalDifferenceAgent {
-
-}
+pub struct TemporalDifferenceAgent {}
 
 impl TemporalDifferenceAgent {}
 
 impl AgentBase for TemporalDifferenceAgent {}
 
-pub struct DynaAgent {
-
-}
+pub struct DynaAgent {}
 
 impl DynaAgent {}
 
 impl AgentBase for DynaAgent {}
 
-pub struct EnvModel {
+pub struct EnvModel {}
 
-}
-
-pub struct Trainer {
-
-}
+pub struct Trainer {}

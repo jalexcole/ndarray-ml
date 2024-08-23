@@ -5,35 +5,9 @@ use std::{
 
 use ndarray::Array2;
 
-pub enum Optimizers {
-    SGD(SGD),
-    AdaGrad(AdaGrad),
-    RMSProp(RMSProp),
-    Adam(Adam),
-}
+use super::schedulers::Schedulers;
 
-pub trait Optimizer: Display + Copy + Debug {
-    fn step(&mut self);
-
-    fn reset_step(&mut self);
-
-    fn update(
-        &mut self,
-        param: &Array2<f64>,
-        param_grad: &Array2<f64>,
-        param_name: &str,
-        cur_loss: Option<f64>,
-    ) -> Array2<f64>;
-}
-
-pub struct SGD;
-
-pub struct AdaGrad;
-
-pub struct RMSProp;
-
-pub struct Adam;
-
+#[derive(Debug, Clone)]
 struct HyperParameters {
     id: String,
     /// Learning rate for update. Default is 0.001.
@@ -58,6 +32,8 @@ struct HyperParameters {
     lr_scheduler: String,
 }
 
+
+
 impl Default for HyperParameters {
     fn default() -> Self {
         Self {
@@ -72,3 +48,113 @@ impl Default for HyperParameters {
         }
     }
 }
+#[derive(Debug, Copy, Clone)]
+struct Cache {
+    
+}
+
+impl Default for Cache {
+    fn default() -> Self {
+        Self {}
+    }
+}
+#[derive(Debug, Clone)]
+pub enum Optimizers {
+    SGD(SGD),
+    AdaGrad(AdaGrad),
+    RMSProp(RMSProp),
+    Adam(Adam),
+}
+
+impl Optimizer for Optimizers {
+    fn step(&mut self) {
+        todo!()
+    }
+
+    fn reset_step(&mut self) {
+        todo!()
+    }
+
+    fn update(
+        &mut self,
+        param: &Array2<f64>,
+        param_grad: &Array2<f64>,
+        param_name: &str,
+        cur_loss: Option<f64>,
+    ) -> Array2<f64> {
+        todo!()
+    }
+}
+
+impl Display for Optimizers {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Optimizers::SGD(_) => todo!(),
+            Optimizers::AdaGrad(_) => todo!(),
+            Optimizers::RMSProp(_) => todo!(),
+            Optimizers::Adam(_) => todo!(),
+        }
+    }
+}
+
+pub trait Optimizer: Display + Clone + Debug {
+    fn step(&mut self);
+
+    fn reset_step(&mut self);
+
+    fn update(
+        &mut self,
+        param: &Array2<f64>,
+        param_grad: &Array2<f64>,
+        param_name: &str,
+        cur_loss: Option<f64>,
+    ) -> Array2<f64>;
+}
+#[derive(Debug, Clone)]
+pub struct SGD {
+    hyperparams: HyperParameters,
+    cache: Cache,
+    curl_step: f32,
+    lr_scheduler: Schedulers,
+}
+
+impl SGD {
+
+}
+
+impl Default for SGD {
+    fn default() -> Self {
+        Self { hyperparams: Default::default(), cache: Default::default(), curl_step: Default::default(), lr_scheduler: Default::default() }
+    }
+}
+#[derive(Debug, Clone)]
+pub struct AdaGrad {
+    hyperparams: HyperParameters,
+    cache: Cache,
+    curl_step: f32,
+    lr_scheduler: Schedulers,
+}
+
+impl AdaGrad {
+
+}
+#[derive(Debug, Clone)]
+pub struct RMSProp {
+    hyperparams: HyperParameters,
+    cache: Cache,
+    curl_step: f32,
+    lr_scheduler: Schedulers,
+}
+
+impl RMSProp {
+
+}
+#[derive(Debug, Clone)]
+pub struct Adam {
+    hyperparams: HyperParameters,
+    cache: Cache,
+    curl_step: f32,
+    lr_scheduler: Schedulers,
+}
+
+

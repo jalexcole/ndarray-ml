@@ -292,7 +292,13 @@ pub enum PadType {
 //     }
 // }
 
-pub fn pad2d(X: Array4<f32>, pad: &[usize], kernel_shape: (usize, usize), stride: isize, dilation: isize) -> (Array4<f64>, [usize; 4]) {
+pub fn pad2d(
+    X: Array4<f32>,
+    pad: &[usize],
+    kernel_shape: (usize, usize),
+    stride: isize,
+    dilation: isize,
+) -> (Array4<f64>, [usize; 4]) {
     todo!()
 }
 
@@ -378,9 +384,13 @@ pub fn im2col() {}
 
 pub fn col2im() {}
 
-pub fn conv2d(X: &Array4<f64>, W: &Array4<f64>, b: &[usize], dialtion: Option<usize>) -> Array4<f64> {
+pub fn conv2d(
+    X: &Array4<f64>,
+    W: &Array4<f64>,
+    b: &[usize],
+    dialtion: Option<usize>,
+) -> Array4<f64> {
     todo!();
-    
 }
 
 pub fn conv1D() {}

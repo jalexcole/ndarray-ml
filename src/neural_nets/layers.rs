@@ -5,6 +5,12 @@ use ndarray::Array2;
 pub struct LayerData;
 pub struct LayerBase;
 
+pub struct LayerSummary {
+    layer: usize,
+    parameters:usize,
+    hyper_parameters: usize,
+} 
+
 pub trait Layer {
     /// Unfreeze the layer parameters so they can be updated.
     fn freeze(&self);
@@ -12,13 +18,44 @@ pub trait Layer {
     fn flush_gradients(&self);
 
     fn set_params(&self, summary_dict: LayerParameters);
+
+    fn unfreeze(&self);
+
+    fn update(&self);
+
+    fn summary(&self) -> LayerSummary;
+
 }
 
 struct LayerParameters;
 
 pub struct DotProductAttention;
 
+impl Layer for DotProductAttention {
+    fn freeze(&self) {
+        todo!()
+    }
 
+    fn flush_gradients(&self) {
+        todo!()
+    }
+
+    fn set_params(&self, summary_dict: LayerParameters) {
+        todo!()
+    }
+
+    fn unfreeze(&self) {
+        todo!()
+    }
+
+    fn update(&self) {
+        todo!()
+    }
+
+    fn summary(&self) -> LayerSummary {
+        todo!()
+    }
+}
 
 pub struct RBM;
 
@@ -114,6 +151,116 @@ impl Layer for RNN {
     fn set_params(&self, summary_dict: LayerParameters) {
         todo!()
     }
+    
+    fn unfreeze(&self) {
+        todo!()
+    }
+    
+    fn update(&self) {
+        todo!()
+    }
+    
+    fn summary(&self) -> LayerSummary {
+        todo!()
+    }
 }
 
 pub struct LSTM;
+
+pub enum Layers {
+    FullyConnected(FullyConnected),
+    Softmax(Softmax),
+    SparseEvolution(SparseEvolution),
+    Conv1D(Conv1D),
+    Conv2D(Conv2D),
+    Pool2D(Pool2D),
+    Deconv2D(Deconv2D),
+    RNN(RNN),
+    LSTM(LSTM),
+}
+
+impl Layer for Layers {
+    fn freeze(&self) {
+        match self {
+            Layers::FullyConnected(_) => todo!(),
+            Layers::Softmax(_) => todo!(),
+            Layers::SparseEvolution(_) => todo!(),
+            Layers::Conv1D(_) => todo!(),
+            Layers::Conv2D(_) => todo!(),
+            Layers::Pool2D(_) => todo!(),
+            Layers::Deconv2D(_) => todo!(),
+            Layers::RNN(_) => todo!(),
+            Layers::LSTM(_) => todo!(),
+        }
+    }
+
+    fn flush_gradients(&self) {
+        match self {
+            Layers::FullyConnected(_) => todo!(),
+            Layers::Softmax(_) => todo!(),
+            Layers::SparseEvolution(_) => todo!(),
+            Layers::Conv1D(_) => todo!(),
+            Layers::Conv2D(_) => todo!(),
+            Layers::Pool2D(_) => todo!(),
+            Layers::Deconv2D(_) => todo!(),
+            Layers::RNN(_) => todo!(),
+            Layers::LSTM(_) => todo!(),
+        }
+    }
+
+    fn set_params(&self, summary_dict: LayerParameters) {
+        match self {
+            Layers::FullyConnected(_) => todo!(),
+            Layers::Softmax(_) => todo!(),
+            Layers::SparseEvolution(_) => todo!(),
+            Layers::Conv1D(_) => todo!(),
+            Layers::Conv2D(_) => todo!(),
+            Layers::Pool2D(_) => todo!(),
+            Layers::Deconv2D(_) => todo!(),
+            Layers::RNN(_) => todo!(),
+            Layers::LSTM(_) => todo!(),
+        }
+    }
+    
+    fn unfreeze(&self) {
+        match self {
+            Layers::FullyConnected(_) => todo!(),
+            Layers::Softmax(_) => todo!(),
+            Layers::SparseEvolution(_) => todo!(),
+            Layers::Conv1D(_) => todo!(),
+            Layers::Conv2D(_) => todo!(),
+            Layers::Pool2D(_) => todo!(),
+            Layers::Deconv2D(_) => todo!(),
+            Layers::RNN(_) => todo!(),
+            Layers::LSTM(_) => todo!(),
+        }
+    }
+    
+    fn update(&self) {
+        match self {
+            Layers::FullyConnected(_) => todo!(),
+            Layers::Softmax(_) => todo!(),
+            Layers::SparseEvolution(_) => todo!(),
+            Layers::Conv1D(_) => todo!(),
+            Layers::Conv2D(_) => todo!(),
+            Layers::Pool2D(_) => todo!(),
+            Layers::Deconv2D(_) => todo!(),
+            Layers::RNN(_) => todo!(),
+            Layers::LSTM(_) => todo!(),
+        }
+    }
+    
+    fn summary(&self) -> LayerSummary {
+        match self {
+            Layers::FullyConnected(_) => todo!(),
+            Layers::Softmax(_) => todo!(),
+            Layers::SparseEvolution(_) => todo!(),
+            Layers::Conv1D(_) => todo!(),
+            Layers::Conv2D(_) => todo!(),
+            Layers::Pool2D(_) => todo!(),
+            Layers::Deconv2D(_) => todo!(),
+            Layers::RNN(_) => todo!(),
+            Layers::LSTM(_) => todo!(),
+        }
+    }
+}

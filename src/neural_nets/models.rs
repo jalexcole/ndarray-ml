@@ -52,3 +52,7 @@ pub struct Word2Vec;
 pub struct WGAN_GP;
 
 pub trait Model {}
+
+pub enum Models {}
+
+impl Model for Models {}
