@@ -1,3 +1,4 @@
+//! The activation function of a node in an artificial neural network is a function that calculates the output of the node based on its individual inputs and their weights. Nontrivial problems can be solved using only a few nodes if the activation function is nonlinear.[1] Modern activation functions include the smooth version of the ReLU, the GELU, which was used in the 2018 BERT model,[2] the logistic (sigmoid) function used in the 2012 speech recognition model developed by Hinton et al,[3] the ReLU used in the 2012 AlexNet computer vision model[4][5] and in the 2015 ResNet model.
 use bon::builder;
 use core::f64;
 use ndarray::{ArrayBase, ArrayD, IxDyn};

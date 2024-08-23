@@ -1,6 +1,12 @@
 use super::activations::{ActivationBase, Activations, Identity, ReLU};
 
+struct Parameters {
 
+}
+
+struct HyperParameters {
+
+}
 
 pub trait Initializer {
 
@@ -44,9 +50,15 @@ impl ActivationInitializer {
 
 
 
-pub struct SchedulerInitializer;
+pub struct SchedulerInitializer {
+    param: Parameters,
+    lr: usize
+}
 
-pub struct OptimizerINitializer;
+pub struct OptimizerInitializer {
+    param: Parameters,
+
+}
 
 pub struct WeightInitializer {
     act_fn: Activations,
@@ -120,6 +132,9 @@ struct InitializerParameters {}
 pub enum Initializers {
     Activation(ActivationInitializer),
     Scheduler(SchedulerInitializer),
-    Optimizer(OptimizerINitializer),
+    Optimizer(OptimizerInitializer),
     Weight(WeightInitializer),
+}
+impl Initializer for Initializers {
+    
 }
